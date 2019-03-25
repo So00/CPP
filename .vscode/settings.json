@@ -49,6 +49,8 @@
         "typeinfo": "cpp",
         "utility": "cpp",
         "__split_buffer": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "iomanip": "cpp",
+        "sstream": "cpp"
     }
 }

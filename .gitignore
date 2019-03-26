@@ -1,5 +1,5 @@
 a.out
 .DS*
 *.o
-*.hgch
+*.gch
 #.gitignore

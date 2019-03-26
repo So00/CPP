@@ -51,6 +51,7 @@
         "__split_buffer": "cpp",
         "vector": "cpp",
         "iomanip": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "fstream": "cpp"
     }
 }

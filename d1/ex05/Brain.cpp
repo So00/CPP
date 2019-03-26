@@ -10,7 +10,7 @@ Brain::~Brain()
     return;
 }
 
-std::string    Brain::identify()
+std::string    Brain::identify() const
 {
     std::stringstream stream;
 

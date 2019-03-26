@@ -1,6 +1,6 @@
 #include "Human.hpp"
 
-Human::Human(Brain brain) : _brain(brain)
+Human::Human()
 {
     return;
 }
@@ -10,15 +10,16 @@ Human::~Human()
     return;
 }
 
-std::string    Human::identify()
+std::string    Human::identify() const
 {
     std::stringstream stream; 
 
-    stream << "0x" << std::hex << &_brain;
+    stream << "0x" << std::hex << &(this->_brain);
     return (stream.str());
 }
 
-Brain           Human::getBrain()
+Brain const    &Human::getBrain() const
 {
-    return (this->_brain);
+    Brain const &ref_brain = this->_brain;
+    return (ref_brain);
 }

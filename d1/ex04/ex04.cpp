@@ -6,6 +6,6 @@ int     main(void)
     std::string *ptr_str = &str;
     std::string &ref_str = str;
 
-    std::cout << *ptr_str;
-    std::cout << ref_str;
+    std::cout << *ptr_str << std::endl;
+    std::cout << ref_str << std::endl;
 }

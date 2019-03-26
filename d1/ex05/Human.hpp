@@ -8,13 +8,13 @@
 class Human
 {
     public:
-        Human(Brain brain = Brain());
+        Human();
         ~Human();
-        std::string     identify();
-        Brain           getBrain();
+        std::string     identify() const;
+        Brain const     &getBrain() const;
 
     private:
-        const Brain _brain;
+        Brain const     _brain;
 
 };
 

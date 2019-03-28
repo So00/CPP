@@ -1,20 +1,20 @@
-#ifndef FRAG_TRAP_HPP
-# define FRAG_TRAP_HPP
+#ifndef CLAP_TRAP_HPP
+# define CLAP_TRAP_HPP
 
 # include <iostream>
 # include <ctime>
 
-class FragTrap
+class ClapTrap
 {
 
     public:
 
-        FragTrap(void);
-        FragTrap(std::string name);
-        FragTrap(FragTrap const & src);
-        ~FragTrap(void);
+        ClapTrap(void);
+        ClapTrap(std::string name);
+        ClapTrap(ClapTrap const & src);
+        ~ClapTrap(void);
         
-        FragTrap & operator=(FragTrap const & rhs);
+        ClapTrap & operator=(ClapTrap const & rhs);
 
         /*
         ** Getters and setters
@@ -43,13 +43,10 @@ class FragTrap
         ** Utilities
         */
 
-        void            rangedAttack(std::string const & target) const;
-        void            meleeAttack(std::string const & target) const;
         void            takeDamage(unsigned int amount);
         void            beRepaired(unsigned int amount);
-        void            vaulthunter_dot_exe(std::string const & target);
-
-    private:
+        
+    protected:
         int             _hit_points;
         int             _max_hit_points;
         int             _energy_points;
@@ -62,6 +59,6 @@ class FragTrap
 
 };
 
-std::ostream    &operator<<(std::ostream &o, FragTrap const &rhs);
+std::ostream    &operator<<(std::ostream &o, ClapTrap const &rhs);
 
 #endif

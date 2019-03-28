@@ -1,20 +1,19 @@
-#ifndef FRAG_TRAP_HPP
-# define FRAG_TRAP_HPP
+#ifndef SCAV_TRAP_HPP
+# define SCAV_TRAP_HPP
 
 # include <iostream>
-# include <ctime>
 
-class FragTrap
+class ScavTrap
 {
 
     public:
 
-        FragTrap(void);
-        FragTrap(std::string name);
-        FragTrap(FragTrap const & src);
-        ~FragTrap(void);
+        ScavTrap(void);
+        ScavTrap(std::string name);
+        ScavTrap(ScavTrap const & src);
+        ~ScavTrap(void);
         
-        FragTrap & operator=(FragTrap const & rhs);
+        ScavTrap & operator=(ScavTrap const & rhs);
 
         /*
         ** Getters and setters
@@ -47,7 +46,7 @@ class FragTrap
         void            meleeAttack(std::string const & target) const;
         void            takeDamage(unsigned int amount);
         void            beRepaired(unsigned int amount);
-        void            vaulthunter_dot_exe(std::string const & target);
+        void            challengeNewcomer(std::string const & target);
 
     private:
         int             _hit_points;
@@ -62,6 +61,6 @@ class FragTrap
 
 };
 
-std::ostream    &operator<<(std::ostream &o, FragTrap const &rhs);
+std::ostream    &operator<<(std::ostream &o, ScavTrap const &rhs);
 
 #endif

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   NinjaTrap.hpp                                      :+:      :+:    :+:   */
+/*   SuperTrap.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/28 15:37:19 by atourner          #+#    #+#             */
+/*   Created: 2019/03/28 15:38:09 by atourner          #+#    #+#             */
 /*   Updated: 2019/03/28 15:38:18 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NINJA_TRAP_HPP
-# define NINJA_TRAP_HPP
+#ifndef SUPER_TRAP_HPP
+# define SUPER_TRAP_HPP
 
-# include <iostream>
-# include "ClapTrap.hpp"
 # include "FragTrap.hpp"
-# include "ScavTrap.hpp"
+# include "NinjaTrap.hpp"
 
-class NinjaTrap : public ClapTrap
+class SuperTrap : public FragTrap, public NinjaTrap
 {
 
     public:
 
-        NinjaTrap(void);
-        NinjaTrap(std::string name);
-        NinjaTrap(NinjaTrap const & src);
-        ~NinjaTrap(void);
-        
-        NinjaTrap & operator=(NinjaTrap const & rhs);
+        SuperTrap(void);
+        SuperTrap(std::string name);
+        SuperTrap(SuperTrap const & src);
+        ~SuperTrap(void);
+
+        SuperTrap & operator=(SuperTrap const & rhs);
 
         /*
         ** Utilities
@@ -36,15 +34,10 @@ class NinjaTrap : public ClapTrap
 
         void            rangedAttack(std::string const & target) const;
         void            meleeAttack(std::string const & target) const;
-        void            ninjaShoebox(ClapTrap const & target);
-        void            ninjaShoebox(FragTrap const & target);
-        void            ninjaShoebox(ScavTrap const & target);
-        void            ninjaShoebox(NinjaTrap const & target);
 
     private:
 
 
 };
-
 
 #endif

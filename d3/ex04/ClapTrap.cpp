@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/28 15:37:36 by atourner          #+#    #+#             */
+/*   Updated: 2019/03/28 15:38:18 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ClapTrap.hpp"
 
 /*
@@ -20,7 +32,7 @@ ClapTrap::ClapTrap(std::string name)
   _melee_attack_damage(30), _ranged_attack_damage(20),
   _armor_damage_reduction(5)
 {
-    std::cout << "No directive. " << this->_name << " created." << std::endl;
+    std::cout << "No directive. " << name << " created." << std::endl;
     return;
 }
 
@@ -201,14 +213,16 @@ void            ClapTrap::beRepaired(unsigned int amount)
 
 std::ostream    &operator<<(std::ostream &o, ClapTrap const &rhs)
 {
-    o << "HitPoints " << rhs.get_hit_points() << " - MaxHitPoints "
-    << rhs.get_max_hit_points() << " - EnergyPoints "
-    << rhs.get_energy_points() << " - MaxEnergyPoints "
-    << rhs.get_max_energy_points() << " - Level "
-    << rhs.get_level() << " - Name "
-    << rhs.get_name() << " - MeleeDamage "
-    << rhs.get_melee_attack_damage() << " - RangedDamage "
-    << rhs.get_ranged_attack_damage() << " - DamageReduction "
-    << rhs.get_armor_damage_reduction();
+    o << std::endl << "*****************" << std::endl
+    << "* HitPoints " << rhs.get_hit_points() << std::endl 
+    << "* MaxHitPoints " << rhs.get_max_hit_points() << std::endl
+    << "* EnergyPoints" << rhs.get_energy_points() << std::endl
+    << "* MaxEnergyPoints " << rhs.get_max_energy_points() << std::endl
+    << "* Level " << rhs.get_level() << std::endl
+    << "* Name " << rhs.get_name() << std::endl
+    << "* MeleeDamage " << rhs.get_melee_attack_damage() << std::endl
+    << "* RangedDamage " << rhs.get_ranged_attack_damage() << std::endl
+    << "* DamageReduction " << rhs.get_armor_damage_reduction() << std::endl
+    << "*****************" << std::endl;
     return o;
 }

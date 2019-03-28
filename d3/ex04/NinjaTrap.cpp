@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   NinjaTrap.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/28 15:35:58 by atourner          #+#    #+#             */
+/*   Updated: 2019/03/28 15:36:01 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "NinjaTrap.hpp"
 
 /*
@@ -29,6 +41,17 @@ NinjaTrap::NinjaTrap(std::string name)
     this->_ranged_attack_damage = 5;
     this->_armor_damage_reduction = 0;
     std::cout << "Watchaaa ! Ninja from China incoming ! " << this->_name << " created." << std::endl;
+    return;
+}
+
+NinjaTrap::NinjaTrap(int a)
+{
+    a = 42;
+    this->_energy_points = 120;
+    this->_max_energy_points = 120;
+    this->_melee_attack_damage = 60;
+
+    std::cout << "Watchaaa ! Ninja from China incoming ! " << ClapTrap::_name << " created." << std::endl;
     return;
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/28 15:37:42 by atourner          #+#    #+#             */
+/*   Updated: 2019/03/28 15:38:18 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "FragTrap.hpp"
 
 /*
@@ -14,7 +26,7 @@ FragTrap::FragTrap(void)
 FragTrap::FragTrap(std::string name)
 : ClapTrap(name)
 {
-    std::cout << "Directive one: Protect humanity! Directive two: Obey Jack at all costs. Directive three: Dance!. " << this->_name << " created." << std::endl;
+    std::cout << "Directive one: Protect humanity! Directive two: Obey Jack at all costs. Directive three: Dance!. " << name << " created." << std::endl;
     return;
 }
 

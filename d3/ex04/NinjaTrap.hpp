@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   NinjaTrap.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/28 15:37:54 by atourner          #+#    #+#             */
+/*   Updated: 2019/03/28 15:38:18 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef NINJA_TRAP_HPP
 # define NINJA_TRAP_HPP
 
@@ -6,7 +18,7 @@
 # include "FragTrap.hpp"
 # include "ScavTrap.hpp"
 
-class NinjaTrap : public ClapTrap
+class NinjaTrap : public virtual ClapTrap
 {
 
     public:
@@ -31,6 +43,9 @@ class NinjaTrap : public ClapTrap
 
     private:
 
+
+    protected:
+        NinjaTrap(int a);
 
 };
 

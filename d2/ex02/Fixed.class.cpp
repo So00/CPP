@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 12:56:14 by atourner          #+#    #+#             */
-/*   Updated: 2019/03/27 12:56:22 by atourner         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:51:57 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,32 +83,24 @@ int     Fixed::toInt(void) const
 ** Operator
 */
 
-Fixed & Fixed::operator*(const Fixed & mult)
+Fixed Fixed::operator*(const Fixed & mult)
 {
-    float ref = this->toFloat() * mult.toFloat();
-    this->_fixed_nb = roundf(ref * (float)(1 << Fixed::_frac_bit));
-    return *(this);
+    return (Fixed (roundf(this->toFloat() * mult.toFloat())));
 }
 
-Fixed & Fixed::operator/(const Fixed & div)
+Fixed Fixed::operator/(const Fixed & div)
 {
-    float ref = this->toFloat() / div.toFloat();
-    this->_fixed_nb = roundf(ref * (float)(1 << Fixed::_frac_bit));
-    return *(this);
+    return (Fixed (roundf(this->toFloat() / div.toFloat())));
 }
 
-Fixed & Fixed::operator-(const Fixed & minus)
+Fixed Fixed::operator-(const Fixed & minus)
 {
-    float ref = this->toFloat() - minus.toFloat();
-    this->_fixed_nb = roundf(ref * (float)(1 << Fixed::_frac_bit));
-    return *(this);
+    return (Fixed (roundf(this->toFloat() - minus.toFloat())));
 }
 
-Fixed & Fixed::operator+(const Fixed & add)
+Fixed Fixed::operator+(const Fixed & add)
 {
-    float ref = this->toFloat() + add.toFloat();
-    this->_fixed_nb = roundf(ref * (float)(1 << Fixed::_frac_bit));
-    return *(this);
+    return (roundf(this->toFloat() + add.toFloat()));
 }
 
 /*
@@ -117,32 +109,32 @@ Fixed & Fixed::operator+(const Fixed & add)
 
 int     Fixed::operator>(Fixed const & cmp)
 {
-    return (this->toFloat() > cmp.toFloat());
+    return (this->_fixed_nb > cmp.getRawBits());
 }
 
 int     Fixed::operator>=(Fixed const & cmp)
 {
-    return (this->toFloat() >= cmp.toFloat());
+    return (this->_fixed_nb >= cmp.getRawBits());
 }
 
 int     Fixed::operator<(Fixed const & cmp)
 {
-    return (this->toFloat() < cmp.toFloat());
+    return (this->_fixed_nb < cmp.getRawBits());
 }
 
 int     Fixed::operator<=(Fixed const & cmp)
 {
-    return (this->toFloat() <= cmp.toFloat());
+    return (this->_fixed_nb <= cmp.getRawBits());
 }
 
 int     Fixed::operator==(Fixed const & cmp)
 {
-    return (this->toFloat() == cmp.toFloat());
+    return (this->_fixed_nb == cmp.getRawBits());
 }
 
 int     Fixed::operator!=(Fixed const & cmp)
 {
-    return (this->toFloat() != cmp.toFloat());
+    return (this->_fixed_nb != cmp.getRawBits());
 }
 
 /*

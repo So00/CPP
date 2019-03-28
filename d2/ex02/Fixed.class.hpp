@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 12:56:17 by atourner          #+#    #+#             */
-/*   Updated: 2019/03/27 12:56:21 by atourner         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:51:52 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ class Fixed
         ~Fixed();
         
         Fixed & operator=(Fixed const & rhs);
-        Fixed & operator*(Fixed const & mult);
-        Fixed & operator/(Fixed const & div);
-        Fixed & operator-(Fixed const & minus);
-        Fixed & operator+(Fixed const & add);
+        Fixed   operator*(Fixed const & mult);
+        Fixed   operator/(Fixed const & div);
+        Fixed   operator-(Fixed const & minus);
+        Fixed   operator+(Fixed const & add);
         int     operator>(Fixed const & cmp);
         int     operator>=(Fixed const & cmp);
         int     operator<(Fixed const & cmp);

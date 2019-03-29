@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Peon.hpp                                           :+:      :+:    :+:   */
+/*   PowerFist.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/29 08:07:40 by atourner          #+#    #+#             */
-/*   Updated: 2019/03/29 08:07:58 by atourner         ###   ########.fr       */
+/*   Created: 2019/03/29 09:17:22 by atourner          #+#    #+#             */
+/*   Updated: 2019/03/29 09:17:33 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PEON_HPP
-# define PEON_HPP
+#ifndef POWERFIST_HPP
+# define POWERFIST_HPP
 
 # include <iostream>
-# include "Victim.hpp"
+# include "AWeapon.hpp"
 
-class Peon : public Victim
+class PowerFist : public AWeapon
 {
 
-    public: 
+    public:
 
-        Peon(std::string name);
-        Peon(Peon const & src);
-        ~Peon(void);
-        Peon &		    operator=(Peon const & rhs);
+        PowerFist(void);
+        PowerFist(PowerFist const & src);
+        virtual ~PowerFist(void);
+        PowerFist &		operator=(PowerFist const & rhs);
 
-        virtual void    getPolymorphed(void) const;
+        virtual void        attack() const;
+
 
     protected:
-        Peon(void); 
+
 
     private:
 
 };
-
-std::ostream &	operator<< (std::ostream & o, Peon const & rhs);
 
 #endif

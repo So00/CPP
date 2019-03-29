@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Peon.hpp                                           :+:      :+:    :+:   */
+/*   Archer.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,31 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PEON_HPP
-# define PEON_HPP
+#ifndef ARCHER_HPP
+# define ARCHER_HPP
 
 # include <iostream>
 # include "Victim.hpp"
 
-class Peon : public Victim
+class Archer : public Victim
 {
 
     public: 
 
-        Peon(std::string name);
-        Peon(Peon const & src);
-        ~Peon(void);
-        Peon &		    operator=(Peon const & rhs);
+        Archer(std::string name);
+        Archer(Archer const & src);
+        ~Archer(void);
+        Archer &		    operator=(Archer const & rhs);
 
         virtual void    getPolymorphed(void) const;
 
     protected:
-        Peon(void); 
+        Archer(void); 
 
     private:
 
 };
 
-std::ostream &	operator<< (std::ostream & o, Peon const & rhs);
+std::ostream &	operator<< (std::ostream & o, Archer const & rhs);
 
 #endif

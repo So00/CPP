@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 12:56:14 by atourner          #+#    #+#             */
-/*   Updated: 2019/03/28 16:51:57 by atourner         ###   ########.fr       */
+/*   Updated: 2019/03/28 17:35:26 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,22 +85,25 @@ int     Fixed::toInt(void) const
 
 Fixed Fixed::operator*(const Fixed & mult)
 {
-    return (Fixed (roundf(this->toFloat() * mult.toFloat())));
+    Fixed ret;
+    int test = (this->_fixed_nb * mult.getRawBits()) / (1 << Fixed::_frac_bit);
+    ret.setRawBits(test);
+    return (ret);
 }
 
 Fixed Fixed::operator/(const Fixed & div)
 {
-    return (Fixed (roundf(this->toFloat() / div.toFloat())));
+    return (Fixed (this->toFloat() / div.toFloat()));
 }
 
 Fixed Fixed::operator-(const Fixed & minus)
 {
-    return (Fixed (roundf(this->toFloat() - minus.toFloat())));
+    return (Fixed (this->toFloat() - minus.toFloat()));
 }
 
 Fixed Fixed::operator+(const Fixed & add)
 {
-    return (roundf(this->toFloat() + add.toFloat()));
+    return (this->toFloat() + add.toFloat());
 }
 
 /*
@@ -173,28 +176,28 @@ float    Fixed::operator--(int post)
 
 Fixed const & Fixed::max(Fixed const &a, Fixed const &b)
 {
-    if (a.toFloat() > b.toFloat())
+    if (a.getRawBits() > b.getRawBits())
         return (a);
     return (b);
 }
 
-Fixed const&  Fixed::min(Fixed const &a, Fixed const &b)
+Fixed const & Fixed::min(Fixed const &a, Fixed const &b)
 {
-    if (a.toFloat() < b.toFloat())
+    if (a.getRawBits() < b.getRawBits())
         return (a);
     return (b);
 }
 
 Fixed & Fixed::max(Fixed &a, Fixed &b)
 {
-    if (a.toFloat() > b.toFloat())
+    if (a.getRawBits() > b.getRawBits())
         return (a);
     return (b);
 }
 
 Fixed &  Fixed::min(Fixed &a, Fixed &b)
 {
-    if (a.toFloat() < b.toFloat())
+    if (a.getRawBits() < b.getRawBits())
         return (a);
     return (b);
 }

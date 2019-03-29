@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Sorcerer.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/29 08:07:44 by atourner          #+#    #+#             */
+/*   Updated: 2019/03/29 08:21:36 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "Sorcerer.hpp"
 
@@ -21,7 +33,7 @@ Sorcerer::Sorcerer(Sorcerer const & src)
 
 Sorcerer::~Sorcerer(void)
 {
-    std::cout << this->_name << ", " << this->_title << ", is dead ! Consequences will never be the same !" << std::endl;
+    std::cout << this->_name << ", " << this->_title << ", is dead. Consequences will never be the same !" << std::endl;
     return;
 }
 
@@ -40,7 +52,7 @@ std::string const Sorcerer::toString(void) const
     return ("I am " + this->_name + ", " + this->_title + ", and I like ponies !");
 }
 
-void                Sorcerer::polymorph(Victim const & victim)
+void                Sorcerer::polymorph(Victim const & victim) const
 {
     victim.getPolymorphed();
 }

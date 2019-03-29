@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Peon.cpp                                           :+:      :+:    :+:   */
+/*   Archer.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,45 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Peon.hpp"
+#include "Archer.hpp"
 
-Peon::Peon(void)
+Archer::Archer(void)
 {
     return;
 }
 
-Peon::Peon(std::string name)
+Archer::Archer(std::string name)
 : Victim(name)
 {
-    std::cout << "Zog zog." << std::endl;
+    std::cout << "One arrow, one death." << std::endl;
     return;
 }
 
-Peon::Peon(Peon const & src) 
+Archer::Archer(Archer const & src) 
 {
     *this = src;
     return;
 }
 
-Peon::~Peon(void)
+Archer::~Archer(void)
 {
-    std::cout << "Bleuark..." << std::endl;
+    std::cout << "Dahhh, for demacia." << std::endl;
     return;
 }
 
-Peon &	Peon::operator=(Peon const & rhs)
+Archer &	Archer::operator=(Archer const & rhs)
 {
     if (this != &rhs)
         this->_name = rhs.getName();
     return (*this);
 }
 
-void    Peon::getPolymorphed(void) const
+void    Archer::getPolymorphed(void) const
 {
-    std::cout << this->_name << " has been turned into a pink pony !" << std::endl;
+    std::cout << this->_name << " has been turned into a yellow tardigrada !" << std::endl;
 }
 
-std::ostream &	operator<< (std::ostream & o, Peon const & rhs)
+std::ostream &	operator<< (std::ostream & o, Archer const & rhs)
 {
     o << rhs.toString() << std::endl;
     return o;

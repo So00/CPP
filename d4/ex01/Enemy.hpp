@@ -1,46 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Victim.hpp                                         :+:      :+:    :+:   */
+/*   Enemy.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/29 08:07:53 by atourner          #+#    #+#             */
-/*   Updated: 2019/03/29 08:23:00 by atourner         ###   ########.fr       */
+/*   Created: 2019/03/29 10:30:45 by atourner          #+#    #+#             */
+/*   Updated: 2019/03/29 11:22:50 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VICTIMCLASS_HPP
-# define VICTIMCLASS_HPP
+#ifndef ENEMY_HPP
+# define ENEMY_HPP
 
 # include <iostream>
 
-class Victim
+class Enemy
 {
 
     public: 
 
-        Victim(std::string name);
-        Victim(Victim const & src); 
-        virtual ~Victim(void); 
-
-        Victim &		operator=(Victim const & rhs);
-
+        Enemy(void);
+        Enemy(int hp, std::string const & type);
+        Enemy(Enemy const & src);
+        virtual ~Enemy(void);
+        Enemy &		operator=(Enemy const & rhs);
         std::string const	toString(void) const;
-        virtual void        getPolymorphed(void) const;
-
-        std::string	        getName(void) const;
-        void	            setName(std::string name);
-
-    protected:
-        Victim(void);
-    
-        std::string	_name;
+    	
+        int	            getHP(void) const;
+    	std::string     getType(void) const;
+        virtual void    takeDamage(int);
 
     private:
 
+        int	_HP;
+        std::string _type;
 };
 
-std::ostream &	operator<< (std::ostream & o, Victim const & rhs);
+std::ostream &	operator<< (std::ostream & o, Enemy const & rhs);
 
 #endif

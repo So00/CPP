@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Sorcerer.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/29 08:07:47 by atourner          #+#    #+#             */
+/*   Updated: 2019/03/29 08:21:45 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SORCERER_HPP
 # define SORCERER_HPP
 
@@ -14,7 +26,7 @@ class Sorcerer {
         Sorcerer &		        operator=(Sorcerer const & rhs);
 
         std::string const	toString(void) const;
-        void                polymorph(Victim const &);
+        void                polymorph(Victim const &) const;
 
         std::string	        getName(void) const;
         void	            setName(std::string name);

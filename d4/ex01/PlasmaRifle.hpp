@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Peon.hpp                                           :+:      :+:    :+:   */
+/*   PlasmaRifle.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/29 08:07:40 by atourner          #+#    #+#             */
-/*   Updated: 2019/03/29 08:07:58 by atourner         ###   ########.fr       */
+/*   Created: 2019/03/29 09:17:22 by atourner          #+#    #+#             */
+/*   Updated: 2019/03/29 11:32:20 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PEON_HPP
-# define PEON_HPP
+#ifndef PLASMARIFLE_HPP
+# define PLASMARIFLE_HPP
 
 # include <iostream>
-# include "Victim.hpp"
+# include "AWeapon.hpp"
 
-class Peon : public Victim
+class PlasmaRifle : public AWeapon
 {
 
-    public: 
+    public:
 
-        Peon(std::string name);
-        Peon(Peon const & src);
-        ~Peon(void);
-        Peon &		    operator=(Peon const & rhs);
+        PlasmaRifle(void);
+        PlasmaRifle(PlasmaRifle const & src);
+        virtual ~PlasmaRifle(void);
+        PlasmaRifle &		operator=(PlasmaRifle const & rhs);
 
-        virtual void    getPolymorphed(void) const;
+        virtual void        attack() const;
+
 
     protected:
-        Peon(void); 
+
 
     private:
 
 };
-
-std::ostream &	operator<< (std::ostream & o, Peon const & rhs);
 
 #endif

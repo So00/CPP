@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Victim.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/29 08:07:50 by atourner          #+#    #+#             */
+/*   Updated: 2019/03/29 08:17:14 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "Victim.hpp"
 
 Victim::Victim(void)
@@ -8,7 +20,7 @@ Victim::Victim(void)
 Victim::Victim(std::string name)
 : _name(name)
 {
-    std::cout << "Some random victim called " << name << " just popped ! " << std::endl;
+    std::cout << "Some random victim called " << name << " just popped !" << std::endl;
     return;
 }
 
@@ -20,7 +32,7 @@ Victim::Victim(Victim const & src)
 
 Victim::~Victim(void)
 {
-    std::cout << "Victime " << this->_name << " just died for no apparent reason !" << std::endl;
+    std::cout << "Victim " << this->_name << " just died for no apparent reason !" << std::endl;
     return;
 }
 

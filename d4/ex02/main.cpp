@@ -7,13 +7,12 @@ int main()
     ISpaceMarine* bob = new TacticalMarine;
     ISpaceMarine* jim = new AssaultTerminator;
     ISquad* vlc = new Squad;
+    ISpaceMarine* test = jim->clone();
 
     vlc->push(bob);
     vlc->push(bob);
     vlc->push(bob);
-    vlc->push(bob);
-    vlc->push(bob);
-    vlc->push(bob);
+    vlc->push(test);
     vlc->push(jim);
     vlc->push(jim);
 
@@ -25,5 +24,5 @@ int main()
         cur->meleeAttack();
     }
     delete vlc;
-    return 0;
+    return (0);
 }

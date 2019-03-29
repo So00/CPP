@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 12:21:33 by atourner          #+#    #+#             */
-/*   Updated: 2019/03/29 12:21:34 by atourner         ###   ########.fr       */
+/*   Updated: 2019/03/29 14:20:54 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void Character::attack(Enemy *enemy)
         if (this->_AP >= this->_weapon->getAPcost())
         {
             this->_AP = this->_AP - this->_weapon->getAPcost();
-            std::cout << this->_name << " attack " << enemy->getType() << " with a " << this->_weapon->getName() << std::endl;
+            std::cout << this->_name << " attacks " << enemy->getType() << " with a " << this->_weapon->getName() << std::endl;
             this->_weapon->attack();
             enemy->takeDamage(this->_weapon->getDamage());
             if (enemy->getHP() == 0)

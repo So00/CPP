@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 15:30:30 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/01 19:04:29 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/01 19:21:09 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ Form::Form(std::string name, int sign, int exec)
 
 Form::Form(Form const & src) 
 {
+    //Do whatever needs to be done
     *this = src;
     return;
 }
@@ -70,12 +71,6 @@ void                Form::beSigned(Bureaucrat *hermes)
     this->_signed = 1;
 }
 
-std::ostream &	operator<< (std::ostream & o, Form const & rhs)
-{
-    o << rhs.toString();
-    return o;
-}
-
 bool                Form::getSigned() const
 {
     return (this->_signed);
@@ -94,6 +89,25 @@ int                 Form::getGradeToSign() const
 int                 Form::getGradeToExec() const
 {
     return (this->_gradeRequireExec);
+}
+
+void                Form::setSigned(bool sign)
+{
+    this->_signed = sign;
+}
+
+void                Form::checkExec(Bureaucrat const &hermes) const
+{
+    if (this->getSigned() == 0)
+        throw ExecuteError(&hermes, this->getName(), "the form is not signed");
+    if (this->getGradeToExec() < hermes.getGrade())
+        throw ExecuteError(&hermes, this->getName(), "his grade is too low");
+}
+
+std::ostream &	operator<< (std::ostream & o, Form const & rhs)
+{
+    o << rhs.toString();
+    return o;
 }
 
 /* HIGH */
@@ -184,11 +198,47 @@ Form::FormCreationError &		Form::FormCreationError::operator=(FormCreationError 
 
 Form::FormCreationError::FormCreationError(FormCreationError const & src) throw()
 {
-    //Do whatever needs to be done
     *this = src;
     return;
 }
 
 char const* Form::FormCreationError::what() const throw() {
     return ("Impossible creation of the form");
+}
+
+/* Execute */
+
+Form::ExecuteError::ExecuteError(void) throw()
+:_name(NULL), _formName(NULL), _reason(NULL)
+{
+    return;
+}
+
+Form::ExecuteError::ExecuteError(Bureaucrat const *hermes, std::string formName, std::string reason) throw()
+: _name(hermes->getName()), _formName(formName),_reason(reason)
+{
+    return;
+}
+
+Form::ExecuteError::~ExecuteError(void) throw()
+{
+    return;
+}
+
+Form::ExecuteError &		Form::ExecuteError::operator=(ExecuteError const & rhs)
+{
+    if (this == &rhs)
+        return (*this);
+    return (*this);
+}
+
+Form::ExecuteError::ExecuteError(ExecuteError const & src) throw()
+{
+    *this = src;
+    return;
+}
+
+char const* Form::ExecuteError::what() const throw() {
+    std::string err = this->_name + " cannot execute " + this->_formName + " because " + this->_reason;
+    return (err.c_str());
 }

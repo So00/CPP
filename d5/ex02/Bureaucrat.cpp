@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 09:59:55 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/01 19:02:22 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/01 19:57:09 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ void                Bureaucrat::signForm(Form *form)
 {
     form->beSigned(this);
     std::cout << this->_name << " signs " << form->getName() << std::endl;
+}
+
+void                Bureaucrat::executeForm(Form const & form)
+{
+    form.execute(*this);
+    std::cout << this->getName() << " executes " << form.getName() << std::endl;
 }
 
 std::string const Bureaucrat::toString(void) const

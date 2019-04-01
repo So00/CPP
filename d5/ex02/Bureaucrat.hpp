@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 09:59:53 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/01 19:03:14 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/01 19:19:54 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ class Bureaucrat
     std::string const   getName() const;
     int                 getGrade() const;
     void                signForm(Form *form);
+    void                executeForm(Form const & form);
 
     void                operator++();
     void                operator--();

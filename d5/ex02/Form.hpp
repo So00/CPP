@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 15:30:39 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/01 19:04:17 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/01 19:20:17 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 # define FORM_HPP
 
 # include <iostream>
+# include <ctime>
 # include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
 class Form {
 
-    public: 
+    public:
 
         class GradeTooLowException : public std::exception
         {
@@ -31,7 +32,8 @@ class Form {
                 GradeTooLowException(Bureaucrat *hermes, std::string formName, std::string reason) throw();
                 GradeTooLowException(GradeTooLowException const & src) throw(); 
                 virtual ~GradeTooLowException(void) throw();
-                virtual const char *what() const throw();
+
+                virtual const char          *what() const throw();
 
                 GradeTooLowException &		operator=(GradeTooLowException const & rhs);
 
@@ -73,6 +75,25 @@ class Form {
             private:
 
         };
+        
+        class ExecuteError : public std::exception
+        {
+
+            public:
+
+                ExecuteError(void) throw();
+                ExecuteError(Bureaucrat const *hermes, std::string formName, std::string reason) throw();
+                ExecuteError(ExecuteError const & src) throw(); 
+                virtual ~ExecuteError(void) throw();
+                virtual const char *what() const throw();
+
+                ExecuteError &		operator=(ExecuteError const & rhs);
+
+            private:
+                std::string  const   _name;
+                std::string  const   _formName;
+                std::string  const   _reason;
+        };
 
         Form(void);
         Form(std::string name, int sign, int exec);
@@ -86,9 +107,11 @@ class Form {
         void                beSigned(Bureaucrat *hermes);
         bool                getSigned() const;
         std::string         getName() const;
+        virtual void        execute(Bureaucrat const & executor) const = 0;
         int                 getGradeToSign() const;
         int                 getGradeToExec() const;
-
+        void                setSigned(bool sign);
+        void                checkExec(Bureaucrat const &hermes) const;
 
     private:
 

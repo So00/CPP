@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 10:00:00 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/01 13:38:59 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/01 14:50:12 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
-    
+
     try
     {
         Bureaucrat  min = Bureaucrat("Min", 150);
@@ -35,7 +35,7 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
-    
+
     try
     {
         Bureaucrat  hermes = Bureaucrat("Hermes", 151);
@@ -46,7 +46,7 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
-    
+
     try
     {
         Bureaucrat  hermes = Bureaucrat("Hermes", 36);
@@ -57,7 +57,7 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
-    
+
     try
     {
         Bureaucrat  hermes = Bureaucrat("Hermes", 1);
@@ -65,7 +65,6 @@ int main()
 
         std::cout << hermes << std::endl;
     }
-    
     catch (std::exception & e)
     {
         std::cout << e.what() << std::endl;
@@ -82,5 +81,7 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
+
+
     return (0);
 }

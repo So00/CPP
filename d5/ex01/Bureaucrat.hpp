@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 09:59:53 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/01 13:41:17 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/01 15:30:35 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ class Bureaucrat
 
     private:
 
-};
+    };
 
     Bureaucrat(std::string const name, int grade);
     Bureaucrat(Bureaucrat const & src);
@@ -62,7 +62,7 @@ class Bureaucrat
     std::string const   toString(void) const;
     std::string const   getName() const;
     int                 getGrade() const;
-
+    void                signForm(std::string name);
 
     void                operator++();
     void                operator--();

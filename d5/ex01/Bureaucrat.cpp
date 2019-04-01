@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 09:59:55 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/01 13:42:28 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/01 15:19:19 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ void                Bureaucrat::operator--()
 {
     check(this->_grade - 1);
     this->_grade--;
+}
+
+void                Bureaucrat::signForm(std::string name)
+{
+    std::cout << this->_name << " signs " << name << std::endl;
 }
 
 std::string const Bureaucrat::toString(void) const

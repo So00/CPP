@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 15:30:39 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/02 09:58:13 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/02 11:04:45 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ class Form {
         Form(void);
         Form(std::string name, int sign, int exec);
         Form(Form const & src); 
-        ~Form(void);
+        virtual ~Form(void);
 
         Form &		operator=(Form const & rhs);
 

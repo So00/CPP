@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 10:00:00 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/02 10:45:12 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/02 11:04:08 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int main()
         rrf = someRandomIntern.makeForm("robotomy request", "Bender");
         hermes->signForm(rrf);
         hermes->executeForm(*rrf);
+        delete rrf;
     }
     catch(const std::exception& e)
     {
@@ -45,9 +46,10 @@ int main()
         Bureaucrat *hermes = new Bureaucrat("Hermes", 72);
         Form* rrf;
 
-        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+        rrf = someRandomIntern.makeForm("", "Bender");
         hermes->signForm(rrf);
         hermes->executeForm(*rrf);
+        delete rrf;
     }
     catch(const std::exception& e)
     {
@@ -62,9 +64,26 @@ int main()
         Bureaucrat *hermes = new Bureaucrat("Hermes", 73);
         Form* rrf;
 
-        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+        rrf = someRandomIntern.makeForm("robotomy request", "");
         hermes->signForm(rrf);
         hermes->executeForm(*rrf);
+        delete rrf;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+
+    try
+    {
+        Intern someRandomIntern;
+        Bureaucrat *hermes = new Bureaucrat("Hermes", 73);
+        Form* rrf;
+
+        rrf = someRandomIntern.makeForm("robotomya request", "bender");
+        hermes->signForm(rrf);
+        hermes->executeForm(*rrf);
+        delete rrf;
     }
     catch(const std::exception& e)
     {

@@ -10,7 +10,7 @@ class Intern {
 
 public: 
 
-    Intern(void); 
+    Intern(void);
     Intern(Intern const & src); 
     ~Intern(void); 
 

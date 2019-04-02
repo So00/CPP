@@ -1,13 +1,13 @@
 #include "OfficeBlock.hpp"
 
 OfficeBlock::OfficeBlock(void)
-: _hermes(NULL), _signer(NULL), _intern(NULL)
+: _signer(NULL), _hermes(NULL), _intern(NULL)
 {
     return;
 }
 
 OfficeBlock::OfficeBlock(Bureaucrat* hermes, Bureaucrat* signer, Intern* intern)
-: _hermes(hermes), _signer(signer), _intern(intern)
+: _signer(hermes), _hermes(signer), _intern(intern)
 {
     return;
 }

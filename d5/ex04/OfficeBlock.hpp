@@ -37,19 +37,19 @@ class OfficeBlock {
         OfficeBlock &		operator=(OfficeBlock const & rhs);
 
         std::string const	toString(void) const;
-        Bureaucrat*     getExecutor() const;
-        Bureaucrat*     getSigner() const;
-        Intern*         getIntern() const;
-        void            setExecutor(Bureaucrat& hermes);
-        void            setSigner(Bureaucrat& signer);
-        void            setIntern(Intern& intern);
-        void            doBureaucracy(std::string formName, std::string target) const;
-        void            check() const;
+        Bureaucrat*         getExecutor() const;
+        Bureaucrat*         getSigner() const;
+        Intern*             getIntern() const;
+        void                setExecutor(Bureaucrat& hermes);
+        void                setSigner(Bureaucrat& signer);
+        void                setIntern(Intern& intern);
+        void                doBureaucracy(std::string formName, std::string target) const;
+        void                check() const;
 
     private:
 
-        Bureaucrat*     _hermes;
         Bureaucrat*     _signer;
+        Bureaucrat*     _hermes;
         Intern*         _intern;
 
 };

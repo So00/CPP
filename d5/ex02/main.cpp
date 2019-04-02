@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 10:00:00 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/01 20:00:17 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/02 10:09:33 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main()
     try
     {
         Bureaucrat  hermes = Bureaucrat("Hermes", 137);
-        Form        *Form = new ShrubberyCreationForm();
+        Form        *Form = new ShrubberyCreationForm("PlanetExpress");
 
         hermes.signForm(Form);
         hermes.executeForm(*Form);

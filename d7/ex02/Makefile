@@ -6,28 +6,26 @@
 #    By: atourner <atourner@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/25 10:42:41 by atourner          #+#    #+#              #
-#    Updated: 2019/04/03 18:39:31 by atourner         ###   ########.fr        #
+#    Updated: 2019/04/03 20:18:03 by atourner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = convert
+NAME = template
 
-COMPILE = clang++ -std=c++98 -Wall -Werror -Wextra
+COMPILE = clang++ -Wall -Werror -Wextra
 
-SRC =	main.cpp\
-		Convert.cpp
+SRC =	main.cpp
 
-CMP = $(SRC:.cpp=.o)
+TEMPLATE = Array.hpp
+
+CMP = $(TEMPLATE:.hpp=.hpp.gch)
 
 .PHONY:    all clean fclean re
 
 all : NAME
 
-NAME : $(CMP)
-	$(COMPILE) -o $(NAME) $(SRC)
-
-%.o: %.cpp
-	$(COMPILE) -c $< -o $@
+NAME :
+	$(COMPILE) $(SRC) -o $(NAME)
 
 clean :
 	rm -rf $(CMP)
@@ -36,3 +34,6 @@ fclean : clean
 	rm -rf $(NAME)
 
 re : fclean all
+
+test: re
+	./$(NAME)

@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:57:46 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/05 11:19:10 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/05 13:49:45 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <iostream>
 # include <stack>
-# include <iterator>
 
 template <typename T>
 class Mutantstack : public std::stack<T>
@@ -62,16 +61,30 @@ class Mutantstack : public std::stack<T>
                     return (*this->_ptr);
                 }
 
-                void      operator++(int post)
+                T*      operator++(int post)
                 {
-                    (void)post;
-                    this->_ptr++;
+                    static_cast<void>(post);
+                    T* ret = this->_ptr;
+                    this->_ptr--;
+                    return (ret);
                 }
 
-                void      operator--(int post)
+                T*         operator--(int post)
                 {
-                    (void)post;
+                    static_cast<void>(post);
+                    T*ret = this->_ptr;
+                    this->_ptr++;
+                    return (ret);
+                }
+
+                void      operator++(void)
+                {
                     this->_ptr--;
+                }
+
+                void      operator--(void)
+                {
+                    this->_ptr++;
                 }
 
                 bool        operator!=(Iterator toTest)
@@ -96,18 +109,29 @@ class Mutantstack : public std::stack<T>
         void        push(T obj)
         {
             std::stack<T>::push(obj);
-            if (this->_first.getPtr() == NULL)
+            this->_first.setPtr(&(this->top()));
+            if (this->_last.getPtr() == NULL)
+            {
+                this->_last.setPtr(&(this->top()));
+                std::stack<T>::push(obj);
                 this->_first.setPtr(&(this->top()));
-            this->_last.setPtr(&(this->top()));
+            }
         }
 
         void        pop()
         {
-            if (this->_first.getPtr() != this->_last.getPtr())
+            if (std::stack<T>::size() > 2)
             {
                 std::stack<T>::pop();
                 this->_first.setPtr(&(this->top()));
             }
+            else if (std::stack<T>::size() == 2)
+            {
+                std::stack<T>::pop();
+                std::stack<T>::pop();
+                this->_first.setPtr(NULL);
+                this->_last.setPtr(NULL);
+            }            
         }
 
         ~Mutantstack<T>(void)
@@ -115,20 +139,27 @@ class Mutantstack : public std::stack<T>
             return;
         }
 
-
-        std::string const	toString(void) const
+        int                 size()
         {
-            return ("");
+            if (std::stack<T>::size() > 1)
+                return (std::stack<T>::size() - 1);
+            return (0);
         }
 
         Iterator            begin()
         {
-            return (this->_first.getPtr());
+            if (this->size() != 0)
+                return (this->_first.getPtr());
+            return (NULL);
         }
 
         Iterator            end()
         {
-            return (this->_last.getPtr());
+            if (this->size() != 0)
+            {
+                return this->_last.getPtr();
+            }
+            return (NULL);
         }
 
     protected:

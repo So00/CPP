@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 10:57:46 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/05 13:49:45 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/05 17:55:12 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ class Mutantstack : public std::stack<T>
 
         Mutantstack<T> &		operator=(Mutantstack<T> const & rhs)
         {
-            (void)rhs;
+            static_cast<void>(rhs);
             return *this;
         }
 };

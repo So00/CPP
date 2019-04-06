@@ -6,7 +6,7 @@
 /*   By: atourner <atourner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 16:11:51 by atourner          #+#    #+#             */
-/*   Updated: 2019/04/05 13:47:54 by atourner         ###   ########.fr       */
+/*   Updated: 2019/04/05 18:39:19 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ int main()
         std::cout << *it << std::endl;
         ++it;
     }
+
+    std::stack<int> s(mstack);
     return (0);
 }

@@ -46,21 +46,24 @@ void                    Network::fillInactive(std::string act, std::string add)
 void                Network::createData()
 {
     std::string split(this->_top);
-    split = split.erase(0, split.find("Networks:"));
-    split = split.erase(split.find("\n"), std::string::npos);
-    std::string out = split.substr(split.find("/") + 1, split.find("M") - split.find("/"));
-    this->_map["Network"]._data["Packets out"] = out;
-    split = split.erase(0, split.find(",") + 1);
-    std::string in = split.substr(split.find("/") + 1, split.find("M") - split.find("/"));
-    this->_map["Network"]._data["Packets in"] = in;
-    std::string en0 = this->exec("ifconfig en0");
-    if (en0.find("inactive") == std::string::npos)
-        this->fillActive("en0", en0, "Ethernet");
-    else
-        this->fillInactive("en0", "Ethernet");
-    std::string en1 = this->exec("ifconfig en1");
-    if (en1.find("inactive") == std::string::npos)
-        this->fillActive("en1", en1, "Wifi");
-    else
-        this->fillInactive("en1", "Wifi");
+    if (split.length())
+    {
+        split = split.erase(0, split.find("Networks:"));
+        split = split.erase(split.find("\n"), std::string::npos);
+        std::string out = split.substr(split.find("/") + 1, split.find("M") - split.find("/"));
+        this->_map["Network"]._data["Packets out"] = out;
+        split = split.erase(0, split.find(",") + 1);
+        std::string in = split.substr(split.find("/") + 1, split.find("M") - split.find("/"));
+        this->_map["Network"]._data["Packets in"] = in;
+        std::string en0 = this->exec("ifconfig en0");
+        if (en0.find("inactive") == std::string::npos)
+            this->fillActive("en0", en0, "Ethernet");
+        else
+            this->fillInactive("en0", "Ethernet");
+        std::string en1 = this->exec("ifconfig en1");
+        if (en1.find("inactive") == std::string::npos)
+            this->fillActive("en1", en1, "Wifi");
+        else
+            this->fillInactive("en1", "Wifi");
+    }
 }

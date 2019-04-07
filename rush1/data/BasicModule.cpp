@@ -28,6 +28,14 @@ t_data     BasicModule::getData(std::string key)
     return (this->_map[key]);
 }
 
+void                        BasicModule::taggleBoolean(std::string name)
+{
+    if (this->_map[name].display)
+        this->_map[name].display = false;
+    else
+        this->_map[name].display = true;
+}
+
 std::vector<std::string>    BasicModule::getKeys()
 {
     return (this->_keys);

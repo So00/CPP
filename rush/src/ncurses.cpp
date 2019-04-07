@@ -59,7 +59,7 @@ int     get_ev(int c, SpaceShip *elem, WINDOW *board) {
     {
         wrefresh(board);
         switch (c)
-        {   
+        {
             case (47) :
                 if (bulletTime < 450)
                 bulletTime += 25;
@@ -93,8 +93,8 @@ int     get_ev(int c, SpaceShip *elem, WINDOW *board) {
 
 void        print_ship(SpaceShip *elem, WINDOW *board) {
     start_color();
-        init_pair(1, COLOR_GREEN, COLOR_BLACK);
-        init_pair(2, COLOR_RED, COLOR_BLACK);
+    init_pair(1, COLOR_GREEN, COLOR_BLACK);
+    init_pair(2, COLOR_RED, COLOR_BLACK);
     if (elem->getType() == "player")
         wattron(board, COLOR_PAIR(1));
     else

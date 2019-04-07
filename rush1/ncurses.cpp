@@ -34,7 +34,7 @@ bool        keepOnGoing(t_ncurses *info, Controller & controller)
     for (int i = 1; i < 82; i++)
         mvwprintw(info->board, i, 1, "%*s", 358 ," ");
     mvwprintw(info->board, 1, 5, "%s", "Usefull information, don't stay forever 👀");
-    controller.update();
+    // controller.update();
     std::vector<std::string> vec = controller.getKeys();
     std::vector<std::string>::iterator it = vec.begin();
 
@@ -71,7 +71,8 @@ void        launch_ncurses()
     setlocale(LC_ALL, "");
     ft_init_ncurse(info);
     controller.update();
-    while (keepOnGoing(info, controller));
+    while (keepOnGoing(info, controller))
+        controller.update();
     erase(&(info->board));
     delete info;
 }

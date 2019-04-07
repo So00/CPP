@@ -26,11 +26,12 @@ class BasicModule : public virtual IMonitorModule
         BasicModule(BasicModule const & src);
         virtual ~BasicModule(void);
 
-        virtual t_data          getData(std::string key);
-        virtual void            setData(std::string key, t_data data);
-        std::string             get_list_systcl(std::string actSearch);
-        std::string             exec(const char* cmd);
+        virtual t_data              getData(std::string key);
+        virtual void                setData(std::string key, t_data data);
+        std::string                 get_list_systcl(std::string actSearch);
+        std::string                 exec(const char* cmd);
         std::vector<std::string>    getKeys();
+        void                        taggleBoolean(std::string name);
 
     protected:
         std::vector<std::string>                            _keys;

@@ -16,13 +16,6 @@ int		main(int ac, char **av)
 	if (choice(ac, av))
 	{
 		MonitorSDL	sdl(1920, 1080);
-		/*
-		parse modules to display -> bool sur a  afficher
-		total ram -> true
-		ram unused -> true
-		totalram + ram -> true
-
-		*/
 		try
 		{
 			sdl.init();
@@ -36,7 +29,8 @@ int		main(int ac, char **av)
 	}
 	else
 	{
-		launch_ncurses();
+		Ncurses ncurses;
+		ncurses.launch_ncurses();
 	}
 	
 	

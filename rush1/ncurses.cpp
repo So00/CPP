@@ -1,14 +1,13 @@
 #include "ncurses.hpp"
 #include "data/Controller.hpp"
 
-int     get_ev(int c)
+void     Ncurses::keyEvent(int c)
 {
-    if (c == 'q')
-        return (0);
-    return (1);
+    if (c == 'q' || c == 27)
+        this->ev = false;
 }
 
-void	    option_ncurses(void)
+void	    Ncurses::option_ncurses(void)
 {
 	curs_set(0);
     noecho();
@@ -27,57 +26,59 @@ void	    option_ncurses(void)
 	init_color(20, 255, 255, 255);
 }
 
-bool        keepOnGoing(t_ncurses *info, Controller & controller)
+void        Ncurses::update()
 {
-    wattron(info->board, COLOR_PAIR(1));
-    int     c;
-    for (int i = 1; i < 82; i++)
-        mvwprintw(info->board, i, 1, "%*s", 358 ," ");
-    mvwprintw(info->board, 1, 5, "%s", "Usefull information, don't stay forever 👀");
-    // controller.update();
-    std::vector<std::string> vec = controller.getKeys();
-    std::vector<std::string>::iterator it = vec.begin();
-
-    int     y = 4;
-    int     x = 20;
-    int     color = 1;
-
-    while (it != vec.end())
+    while (this->ev)
     {
-        wattron(info->board, COLOR_PAIR(color));
-        mvwprintw(info->board, y, x, "%s", (*it).c_str());
-        y++;
-        t_data data = controller.getData(*it);
-        std::map<std::string, std::string>::iterator itD = data._data.begin();
-        while (itD != data._data.end())
+        this->controller.update();
+        wattron(info->board, COLOR_PAIR(1));
+        int     c;
+        for (int i = 1; i < 82; i++)
+            mvwprintw(info->board, i, 1, "%*s", 358 ," ");
+        mvwprintw(info->board, 1, 5, "%s", "Usefull information, don't stay forever 👀");
+        std::vector<std::string> vec = controller.getKeys();
+        std::vector<std::string>::iterator it = vec.begin();
+
+        int     y = 4;
+        int     x = 20;
+        int     color = 1;
+
+        while (it != vec.end())
         {
-            mvwprintw(info->board, y, x + 3, "%s => %s", itD->first.c_str(), itD->second.c_str());
-            itD++;
+            wattron(info->board, COLOR_PAIR(color));
+            mvwprintw(info->board, y, x, "%s", (*it).c_str());
+            y++;
+            t_data data = controller.getData(*it);
+            std::map<std::string, std::string>::iterator itD = data._data.begin();
+            while (itD != data._data.end())
+            {
+                mvwprintw(info->board, y, x + 3, "%s => %s", itD->first.c_str(), itD->second.c_str());
+                itD++;
+                y++;
+            }
+            it++;
+            color++;
             y++;
         }
-        it++;
-        color++;
-        y++;
+        wrefresh(info->board);
+        c = wgetch(info->board);
+        keyEvent(c);
     }
-    wrefresh(info->board);
-    c = wgetch(info->board);
-    return (get_ev(c));
 }
 
-void        launch_ncurses()
+void        Ncurses::launch_ncurses()
 {
-    Controller      controller;
-    t_ncurses       *info = new t_ncurses;
+    this->info = new t_ncurses;
+    this->ev = true;
     setlocale(LC_ALL, "");
-    ft_init_ncurse(info);
-    controller.update();
-    while (keepOnGoing(info, controller))
-        controller.update();
-    erase(&(info->board));
+    init();
+    this->controller.update();
+    this->update();
+    quit();
     delete info;
 }
 
-void        ft_init_ncurse(t_ncurses *info)
+void        Ncurses::init()
 {
     initscr();
     info->width = 360;
@@ -89,8 +90,41 @@ void        ft_init_ncurse(t_ncurses *info)
     wrefresh(info->board);
 }
 
-void    erase(WINDOW **board)
+void    Ncurses::quit()
 {
-    delwin(*board);
+    delwin(this->info->board);
 	endwin();
+}
+
+Ncurses::Ncurses(void)
+{
+    return;
+}
+
+Ncurses::Ncurses(Ncurses const & src) 
+{
+    *this = src;
+    return;
+}
+
+Ncurses::~Ncurses(void)
+{
+    return;
+}
+
+Ncurses &	Ncurses::operator=(Ncurses const & rhs)
+{
+    static_cast<void>(rhs);
+    return *this;
+}
+
+std::string const Ncurses::toString(void) const
+{
+    return "";
+}
+
+std::ostream &	operator<< (std::ostream & o, Ncurses const & rhs)
+{
+    o << rhs.toString();
+    return o;
 }

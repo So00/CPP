@@ -3,24 +3,24 @@
 
 Controller::Controller(void)
 {
-    this->_keys.push_back("Ram");
-    this->_keys.push_back("Model");
-    this->_keys.push_back("Cpu");
     this->_keys.push_back("Name");
+    this->_keys.push_back("Model");
     this->_keys.push_back("Os");
     this->_keys.push_back("Date");
+    this->_keys.push_back("Cpu");
     this->_keys.push_back("Processes");
+    this->_keys.push_back("Ram");
     this->_keys.push_back("Network");
     t_data      data;
     data.display = true;
-    this->setData("Ram", data);
+    this->setData("Processes", data);
+    this->setData("Os", data);
     this->setData("Model", data);
+    this->setData("Ram", data);
+    this->setData("Date", data);
+    this->setData("Network", data);
     this->setData("Cpu", data);
     this->setData("Name", data);
-    this->setData("Os", data);
-    this->setData("Date", data);
-    this->setData("Processes", data);
-    this->setData("Network", data);
     this->_start = std::chrono::system_clock::now();
     return;
 }

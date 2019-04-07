@@ -36,16 +36,25 @@ void		MonitorSDL::init()
 			_height,
 			SDL_WINDOW_SHOWN);
 			// SDL_WINDOW_RESIZABLE); // ?
-	
 	if (_win == NULL)
 		throw std::exception();
-	_rend = SDL_CreateRenderer(_win, -1, SDL_RENDERER_ACCELERATED);
 	
+	_rend = SDL_CreateRenderer(_win, -1, SDL_RENDERER_ACCELERATED);
 	if (_rend == NULL)
 		throw std::exception();
 	
-	if ((_font = TTF_OpenFont("fonts/neue.ttf", 16)) == NULL)
+	_font = TTF_OpenFont("fonts/neue.ttf", 16);
+	if (_font == NULL)
 		throw std::exception();
+
+	_colors[0] = newColor(254, 252, 242, 255);
+	_colors[1] = newColor(255, 255, 0, 255);
+	_colors[2] = newColor(0, 255, 0, 255);
+	_colors[3] = newColor(0, 0, 255, 255);
+	_colors[4] = newColor(255, 0, 255, 255);
+	_colors[5] = newColor(0, 255, 255, 255);
+	_colors[6] = newColor(255, 0, 0, 255);
+	_colors[7] = newColor(100, 100, 100, 255);
 }
 
 void		MonitorSDL::quit()
@@ -78,6 +87,8 @@ void		MonitorSDL::update()
 		// 	{
 		// 		SDL_GetWindowSize(_win, &_width, &_height);
 		// 	}
+		if (_event.type == SDL_MOUSEBUTTONDOWN)
+			buttonEvent(control, _event.button.x, _event.button.y);
 		
 		drawModules(control);
 
@@ -93,13 +104,47 @@ void		MonitorSDL::update()
 
 void		MonitorSDL::drawModules(Controller & control)
 {
-		drawTextBox("Hostname/username", 25, 25, 250, 30);
-		drawTextBox("OS info", 25, 65, 250, 30);
-		drawTextBox("Date/time", 25, 105, 250, 30);
-		drawTextBox("CPU info", 25, 145, 250, 30);
-		drawTextBox("RAM info", 25, 185, 250, 30);
-		drawTextBox("Network throughtput", 25, 225, 250, 30);
-		drawTextBox("Unicorn", 25, 265, 250, 30);
+		if (control.getData("Name").display)
+			drawTextBox("Hostname/username", 25, 25, 250, 30, WHITE);
+		else
+			drawTextBox("Hostname/username", 25, 25, 250, 30, GREY);
+
+		if (control.getData("Model").display)
+			drawTextBox("Model info", 25, 65, 250, 30, WHITE);
+		else
+			drawTextBox("Model info", 25, 65, 250, 30, GREY);
+
+		if (control.getData("Os").display)
+			drawTextBox("OS info", 25, 105, 250, 30, WHITE);
+		else
+			drawTextBox("OS info", 25, 105, 250, 30, GREY);
+
+		if (control.getData("Date").display)
+			drawTextBox("Date/time", 25, 145, 250, 30, WHITE);
+		else
+			drawTextBox("Date/time", 25, 145, 250, 30, GREY);
+		
+		if (control.getData("Cpu").display)
+			drawTextBox("CPU info", 25, 185, 250, 30, WHITE);
+		else
+			drawTextBox("CPU info", 25, 185, 250, 30, GREY);
+
+		if (control.getData("Processes").display)
+			drawTextBox("Processes", 25, 225, 250, 30, WHITE);
+		else
+			drawTextBox("Processes", 25, 225, 250, 30, GREY);
+
+		if (control.getData("Ram").display)
+			drawTextBox("RAM info", 25, 265, 250, 30, WHITE);
+		else
+			drawTextBox("RAM info", 25, 265, 250, 30, GREY);
+
+		if (control.getData("Network").display)
+			drawTextBox("Network throughtput", 25, 305, 250, 30, WHITE);
+		else
+			drawTextBox("Network throughtput", 25, 305, 250, 30, GREY);
+		
+		drawTextBox("Pony", 25, 345, 250, 30, WHITE);
 		SDL_RenderDrawLine(_rend, 300, 10, 300, (_height - 10));
 		
 		std::vector<std::string>	validKeys = control.getKeys();
@@ -109,26 +154,28 @@ void		MonitorSDL::drawModules(Controller & control)
 	    std::vector<std::string>::iterator it;
 		for (it = validKeys.begin(); it != validKeys.end(); it++)
 		{
-			// if (control.getData(*it).display)
+			if (control.getData(*it).display)
+			{
 				if (count < 3)
-					drawBox(*it, control.getData(*it), i, 25);
+					drawBox(*it, control.getData(*it), i, 25, _colors[count % 8]);
 				else if (count < 6)
-					drawBox(*it, control.getData(*it), i, 345);
+					drawBox(*it, control.getData(*it), i, 345, _colors[count % 8]);
 				else
-					drawBox(*it, control.getData(*it), i, 665);
+					drawBox(*it, control.getData(*it), i, 665, _colors[count % 8]);
 				i += 420;
 				count++;
-				if (count == 3)
+				if (count == 3 || count == 6)
 					i = 340;
+			}
 		}
 
 }
 
-void		MonitorSDL::drawBox(std::string title, t_data data, int x, int y)//, int w, int h)
+void		MonitorSDL::drawBox(std::string title, t_data data, int x, int y, SDL_Color c)
 {
 (void)data;
 	
-	drawTextBox(title, x + 5, y, 100, 30);
+	drawTextBox(title, x + 5, y, 100, 30, c);
 	
 	std::string	str;
 	std::map<std::string, std::string>::iterator itD;
@@ -147,11 +194,11 @@ void		MonitorSDL::drawBox(std::string title, t_data data, int x, int y)//, int w
 	pos.w = 400;
 	pos.h = 300;
 
-	SDL_SetRenderDrawColor(_rend, 254, 252, 242, 255);
+	SDL_SetRenderDrawColor(_rend, c.r, c.g, c.b, c.a);
 	SDL_RenderDrawRect(_rend, &pos);
 }
 
-void		MonitorSDL::drawTextBox(std::string str, int x, int y, int w, int h)
+void		MonitorSDL::drawTextBox(std::string str, int x, int y, int w, int h, SDL_Color c)
 {
 	SDL_Rect	pos;
 	pos.x = x;
@@ -159,7 +206,7 @@ void		MonitorSDL::drawTextBox(std::string str, int x, int y, int w, int h)
 	pos.w = w;
 	pos.h = h;
 
-	SDL_SetRenderDrawColor(_rend, 254, 252, 242, 255);
+	SDL_SetRenderDrawColor(_rend, c.r, c.g, c.b, c.a);
 	SDL_RenderDrawRect(_rend, &pos);
 	printToWindow(str, x + 5, y + 5);
 }
@@ -189,11 +236,43 @@ void		MonitorSDL::printToWindow(std::string str, int x, int y)
 	SDL_DestroyTexture(texture);
 }
 
+SDL_Color	MonitorSDL::newColor(int r, int g, int b, int a)
+{
+	SDL_Color	res = {r, g, b, a};
+	return res;
+}
+
 void		MonitorSDL::keyEvent(int key)
 {
 	if (key == SDLK_ESCAPE)
 		quit();
 }
+
+void		MonitorSDL::buttonEvent(Controller & control, int x, int y)
+{
+	if (25 <= x && x <= 275)
+	{
+		if (25 <= y && y <= 55)
+			control.taggleBoolean("Name");
+		if (65 <= y && y <= 95)
+			control.taggleBoolean("Model");
+		if (105 <= y && y <= 135)
+			control.taggleBoolean("Os");
+		if (145 <= y && y <= 175)
+			control.taggleBoolean("Date");
+		if (185 <= y && y <= 215)
+			control.taggleBoolean("Cpu");
+		if (225 <= y && y <= 255)
+			control.taggleBoolean("Processes");
+		if (265 <= y && y <= 295)
+			control.taggleBoolean("Ram");
+		if (305 <= y && y <= 335)
+			control.taggleBoolean("Network");
+		// if (345 <= y && y <= 375)
+		// 	displayPony();
+	}
+}
+
 
 MonitorSDL &	MonitorSDL::operator=(MonitorSDL const & rhs)
 {
